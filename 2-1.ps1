@@ -1,31 +1,32 @@
-$strategies = Get-Content -Path ".\2-1.txt"
 $total = 0
-foreach ($strategy in $strategies) {
+Get-Content -Path ".\2-1.txt" | ForEach-Object -Process {
     $score = 0
-    $call = ($strategy).SubString(0,1)
-    $response = ($strategy).SubString(2,1)
-    if ($call -eq "A") {
-        switch ($response) {
-            "X" { $score += (1 + 3) }
-            "Y" { $score += (2 + 6) }
-            "Z" { $score += (3 + 0) }
-            Default {}
+    $call = ($_).SubString(0,1)
+    $response = ($_).SubString(2,1)
+    switch ($call) {
+        "A" {
+            switch ($response) {
+                "X" { $score += 4 }
+                "Y" { $score += 8 }
+                "Z" { $score += 3 }
+                Default {}
+            }
         }
-    }
-    if ($call -eq "B") {
-        switch ($response) {
-            "X" { $score += (1 + 0) }
-            "Y" { $score += (2 + 3) }
-            "Z" { $score += (3 + 6) }
-            Default {}
+        "B" {
+            switch ($response) {
+                "X" { $score += 1 }
+                "Y" { $score += 5 }
+                "Z" { $score += 9 }
+                Default {}
+            }
         }
-    }
-    if ($call -eq "C") {
-        switch ($response) {
-            "X" { $score += (1 + 6) }
-            "Y" { $score += (2 + 0) }
-            "Z" { $score += (3 + 3) }
-            Default {}
+        "C" {
+            switch ($response) {
+                "X" { $score += 7 }
+                "Y" { $score += 2 }
+                "Z" { $score += 6 }
+                Default {}
+            }
         }
     }
     $total += $score
