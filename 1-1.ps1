@@ -1,14 +1,13 @@
-$calories = Get-Content -Path ".\1-1.txt"
-$mostCalories = 0
-$sumCalories = 0
-foreach ($calorie in $calories) {
-    if ($calorie) {
-        $sumCalories += $calorie
+$most_calories = 0
+$sum_calories = 0
+Get-Content -Path ".\1-1.txt" | ForEach-Object -Process {
+    if ($_) {
+        $sum_calories += $_
     } else {
-        if ($sumCalories -gt $mostCalories) {
-            $mostCalories = $sumCalories
+        if ($sum_calories -gt $most_calories) {
+            $most_calories = $sum_calories
         }
-        $sumCalories = 0
+        $sum_calories = 0
     }
 }
-Write-Host $mostCalories 
+Write-Host $most_calories -ForegroundColor DarkGreen
