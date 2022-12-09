@@ -17,16 +17,13 @@ $sacks = Get-Content -Path .\3-1.txt
 $sacks_n = ($sacks).Length
 for ($i = 0; $i -lt $sacks_n; $i++) {
     $global:dup_item = ""
-    $sack_1 = $sacks[$i]
-    $sack_1_items = $sack_1.ToCharArray()
+    $sack_1_items = $sacks[$i].ToCharArray()
     $i++
     $sack_2 = $sacks[$i]
-    $sack_2n = ($sack_2).length
-    $sack_2_index = 0..($sack_2n - 1)
+    $sack_2_index = 0..(($sack_2).Length - 1)
     $i++
     $sack_3 = $sacks[$i]
-    $sack_3n = ($sack_3).length
-    $sack_3_index = 0..($sack_3n - 1)
+    $sack_3_index = 0..(($sack_3).length - 1)
     :sack_search foreach ($sack_1_item in $sack_1_items) {
         foreach ($sack_2i in $sack_2_index) {
             if ($sack_1_item -ceq $sack_2[$sack_2i]) {
